@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
@@ -16,12 +16,16 @@ type RoomParams = {
 };
 
 export function Room() {
-  const { user } = useAuth();
+  const { user } = useAuth(); 
+  const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const [newQuestion, setNewQuestion] = useState('')
   const { title, questions } = useRoom(roomId);
 
+  function redirectUserToHome() {
+    history.push('/');
+  }
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
     if (newQuestion.trim() === '') {
@@ -61,7 +65,7 @@ export function Room() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="LetMeAsk" />
+          <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToHome} />
           <RoomCode code={roomId} />
         </div>
       </header>
@@ -103,7 +107,7 @@ export function Room() {
               >
                 {!question.isAnswered && (
                   <button
-                    className={`like-button ${question.likeId ? 'liked' : ''}`}
+                    className={`action-button like-button ${question.likeId ? 'liked' : ''}`}
                     type="button"
                     aria-label="Marcar como gostei"
                     onClick={() => handleLikeQuestion(question.id, question.likeId)}

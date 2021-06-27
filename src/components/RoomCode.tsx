@@ -1,3 +1,5 @@
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import copyImg from '../assets/images/copy.svg';
 import '../styles/room-code.scss';
 
@@ -10,11 +12,15 @@ export function RoomCode(props: RoomCodeProps) {
         navigator.clipboard.writeText(props.code);
     }
 
-    return(
+    return (
         <button className="room-code" onClick={copyRoomCode}>
-            <div>
+            <a
+                href="javascript:void(0)"
+                role="tooltip"
+                aria-label="Copiado!" >
+
                 <img src={copyImg} alt="Copy room code" />
-            </div>
+            </a>
             <span>Sala {props.code}</span>
         </button>
     );

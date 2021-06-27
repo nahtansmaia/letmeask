@@ -1,0 +1,41 @@
+.modal {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        background-color: #fff;
+        width: 40%;
+        height: 30%;
+        color: #000;
+        border-radius: 8px;
+
+        .content {
+            padding: 25px;
+
+            .title {
+                font-size: 20px;
+                text-align: center;
+                color: #835afe;
+            }
+
+            footer {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                height: 25px;
+
+                button {
+                    height: 35px;
+                }
+            }
+        }
+    }
+}

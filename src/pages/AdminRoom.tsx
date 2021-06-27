@@ -6,28 +6,32 @@ import answerImg from '../assets/images/answer.svg';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
-//import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
+
+import Modal from '../components/Modal/index';
 
 import '../styles/room.scss';
 import { database } from '../services/firebase';
-
+import { useState } from 'react';
 
 type RoomParams = {
   id: string;
 };
 
 export function AdminRoom() {
-  //  const { user } = useAuth();
   const history = useHistory();
   const params = useParams<RoomParams>();
+  const [isModalDeleteQuestionVisible, setModalDeleteQuestionVisible] = useState(false);
+  const [isModalEndRoomVisible, setModalEndRoomVisible] = useState(false);
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
 
+  function redirectUserToHome() {
+    history.push('/');
+  }
+
   async function handleDeleteQuestion(questionId: string) {
-    if (window.confirm('Deseja realmente excluir essa pergunta?')) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-    }
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
   };
 
   async function handleEndRoom() {
@@ -54,13 +58,19 @@ export function AdminRoom() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="LetMeAsk" />
+            <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToHome}/>
           <div>
             <RoomCode code={roomId} />
-            <Button onClick={handleEndRoom} isOutlined>Encerrar sala</Button>
+            <Button onClick={() => setModalEndRoomVisible(true)} isOutlined>Encerrar sala</Button>
           </div>
         </div>
       </header>
+            {isModalEndRoomVisible ? (
+              <Modal title="Deseja encerrar a sala?">
+                <Button onClick={handleEndRoom}>Encerrar</Button>
+                <Button isOutlined onClick={() => setModalEndRoomVisible(false)}>Cancelar</Button>
+              </Modal>
+            ) : null}
 
       <main className="main-room">
         <div className="room-title">
@@ -81,11 +91,13 @@ export function AdminRoom() {
                   <>
                     <button
                       type="button"
+                      className="action-button"
                       onClick={() => handleCheckQuestionAsAnswered(question.id)}
                     >
                       <img src={checkImg} alt="Marcar pergunta como respondida" />
                     </button>
                     <button
+                      className="action-button"
                       type="button"
                       onClick={() => handleHighlightQuestion(question.id)}
                     >
@@ -94,11 +106,18 @@ export function AdminRoom() {
                   </>
                 )}
                 <button
+                  className="action-button"
                   type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+                  onClick={() => setModalDeleteQuestionVisible(true)}
                 >
                   <img src={deleteImg} alt="Remover pergunta" />
                 </button>
+                {isModalDeleteQuestionVisible ? (
+                  <Modal title="Deseja realmente excluir a pergunta?">
+                    <Button onClick={() => handleDeleteQuestion(question.id)}>Excluir</Button>
+                    <Button isOutlined onClick={() => setModalDeleteQuestionVisible(false)}>Cancelar</Button>
+                  </Modal>
+                ) : null}
               </Question>
             );
           })}
@@ -107,3 +126,4 @@ export function AdminRoom() {
     </div>
   );
 }
+
