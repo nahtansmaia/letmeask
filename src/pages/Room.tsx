@@ -7,7 +7,7 @@ import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
-
+import { useToastWarning, useToastError } from '../hooks/useToast';
 import '../styles/room.scss';
 
 
@@ -22,6 +22,8 @@ export function Room() {
   const roomId = params.id;
   const [newQuestion, setNewQuestion] = useState('')
   const { title, questions } = useRoom(roomId);
+  let warningToast = useToastWarning;
+  let errorToast = useToastError;
 
   function redirectUserToHome() {
     history.push('/');
@@ -29,10 +31,12 @@ export function Room() {
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
     if (newQuestion.trim() === '') {
+      warningToast('Digite sua pergunta')
       return;
     }
 
     if (!user) {
+      errorToast('Realize o login para continuar.');
       throw new Error('You must be logged in');
     }
 

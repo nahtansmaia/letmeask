@@ -11,10 +11,14 @@ import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import { database } from '../services/firebase';
 
+import { useToastWarning, useToastSuccess } from '../hooks/useToast';
+
 export function Home() {
     const history = useHistory();
     const { user, signInWithGoogle } = useAuth();
     const [RoomCode, setRoomCode] = useState('');
+    let warningToast = useToastWarning;
+    let successToast = useToastSuccess;
 
     async function handleCreateRoom() {
         if (!user) {
@@ -27,21 +31,24 @@ export function Home() {
         event.preventDefault();
 
         if (RoomCode.trim() === '') {
+            warningToast('Nome da sala inválido, verifique');
             return;
         }
 
         const roomRef = await database.ref(`rooms/${RoomCode}`).get();
 
         if (!roomRef.exists()) {
-            alert('Room does not exists.');
+            warningToast('Sala não encontrada.')
             return;
         }
 
         if (roomRef.val().endedAt) {
             alert('Room already closed.');
+            warningToast('Esta sala já foi encerrada.')
             return;
         }
 
+        successToast(`Bem-vindo a sala ${RoomCode}`);
         history.push(`/rooms/${RoomCode}`);
     }
 

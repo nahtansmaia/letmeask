@@ -7,15 +7,20 @@ import { Button } from '../components/Button';
 import { useState } from 'react';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
+import { useToastWarning, useToastSuccess } from '../hooks/useToast';
 
 export function NewRoom() {
     const { user } = useAuth();
     const [newRoow, setNewRoom] = useState('');
     const history = useHistory();
+    let warningToast = useToastWarning;
+    let successToast = useToastSuccess;
+
     async function handleCreateNewRoom(event: FormEvent) {
         event.preventDefault();
-        
+
         if (newRoow.trim() === '') {
+            warningToast('Nome da sala inválido, verifique.');
             return;
         }
 
@@ -23,8 +28,8 @@ export function NewRoom() {
         const firebaseRoom = await roomRef.push({
             title: newRoow,
             authorId: user?.id
-        }) 
-
+        })
+        successToast('Sala criada com sucesso!');
         history.push(`/admin/rooms/${firebaseRoom.key}`);
     }
 

@@ -14,6 +14,8 @@ import '../styles/room.scss';
 import { database } from '../services/firebase';
 import { useState } from 'react';
 
+import { useToastSuccess } from '../hooks/useToast';
+
 type RoomParams = {
   id: string;
 };
@@ -25,6 +27,7 @@ export function AdminRoom() {
   const [isModalEndRoomVisible, setModalEndRoomVisible] = useState(false);
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
+  let successToast = useToastSuccess;
 
   function redirectUserToHome() {
     history.push('/');
@@ -32,13 +35,15 @@ export function AdminRoom() {
 
   async function handleDeleteQuestion(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+    successToast('Pergunta excluída com sucesso!');
+    setModalDeleteQuestionVisible(false);
   };
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
     });
-
+    successToast('Sala encerrada com sucesso!');
     history.push('/');
   }
 
@@ -58,19 +63,19 @@ export function AdminRoom() {
     <div id="page-room">
       <header>
         <div className="content">
-            <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToHome}/>
+          <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToHome} />
           <div>
             <RoomCode code={roomId} />
             <Button onClick={() => setModalEndRoomVisible(true)} isOutlined>Encerrar sala</Button>
           </div>
         </div>
       </header>
-            {isModalEndRoomVisible ? (
-              <Modal title="Deseja encerrar a sala?">
-                <Button onClick={handleEndRoom}>Encerrar</Button>
-                <Button isOutlined onClick={() => setModalEndRoomVisible(false)}>Cancelar</Button>
-              </Modal>
-            ) : null}
+      {isModalEndRoomVisible ? (
+        <Modal title="Deseja encerrar a sala?">
+          <Button onClick={handleEndRoom}>Encerrar</Button>
+          <Button isOutlined onClick={() => setModalEndRoomVisible(false)}>Cancelar</Button>
+        </Modal>
+      ) : null}
 
       <main className="main-room">
         <div className="room-title">
@@ -114,7 +119,7 @@ export function AdminRoom() {
                 </button>
                 {isModalDeleteQuestionVisible ? (
                   <Modal title="Deseja realmente excluir a pergunta?">
-                    <Button onClick={() => handleDeleteQuestion(question.id)}>Excluir</Button>
+                    <Button onClick={() => handleDeleteQuestion(question.id) && setModalDeleteQuestionVisible(false)}>Excluir</Button>
                     <Button isOutlined onClick={() => setModalDeleteQuestionVisible(false)}>Cancelar</Button>
                   </Modal>
                 ) : null}
