@@ -1,5 +1,5 @@
 {
-  "homepage": "https://nahtansmaia.github.io/letmeask/",
+  "homepage": "https://letmeask-amber.vercel.app/",
   "name": "letmeask",
   "version": "0.1.0",
   "private": true,
@@ -108,7 +108,8 @@
   },
   "devDependencies": {
     "@types/react-modal": "^3.12.0",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "hint": "^6.1.4"
   },
   "jest": {
     "roots": [
