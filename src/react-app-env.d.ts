@@ -8,6 +8,10 @@ declare namespace NodeJS {
   }
 }
 
+const cors = require("cors");
+
+app.use(cors);
+
 declare module '*.avif' {
   const src: string;
   export default src;
