@@ -57,7 +57,7 @@ export function Home() {
             <aside>
                 <img src={imgHome} alt="Imagem Principal" />
                 <strong>Crie sua sala Q&amp;A ao-vivo</strong>
-                <p>Tire suas duvidas em tempo realz</p>
+                <p>Tire suas duvidas em tempo real</p>
             </aside>
             <main className="main-auth">
                 <div className="main-content">

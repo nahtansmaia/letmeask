@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { AdminRoom } from './pages/AdminRoom';
 import { Home } from './pages/Home';
@@ -7,7 +7,7 @@ import { Room } from './pages/Room';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <AuthContextProvider>
         <Switch>
           <Route path="/" exact component={Home}></Route>
