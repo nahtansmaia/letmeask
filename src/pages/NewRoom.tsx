@@ -43,6 +43,15 @@ export function NewRoom() {
             <main className="main-auth">
                 <div className="main-content">
                     <img src={imgLogo} alt="LetMeAsk" />
+                    <div className="account">
+                        <div className="account-avatar">
+                            <img src={user?.avatar} alt={user?.name} />
+                        </div>
+                        <div className="account-name">
+                            <p>Seja bem-vindo!</p>
+                            <strong>{user?.name}</strong>
+                        </div>
+                    </div>
                     <form onSubmit={handleCreateNewRoom}>
                         <h2>Criar uma nova sala</h2>
                         <input

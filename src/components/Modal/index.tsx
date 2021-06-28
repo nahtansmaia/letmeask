@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
+import { Button } from "../Button";
 import './styles.scss';
 
 type ModalProps = {
@@ -19,6 +20,8 @@ const Modal = ({
                         <h2 className="title">{title}</h2>
                     </header>
                     <footer>
+                        <Button></Button>
+                        <Button></Button>
                         {children}
                     </footer>
                 </div>
