@@ -1,6 +1,5 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import copyImg from '../assets/images/copy.svg';
 import '../styles/room-code.scss';
 
 type RoomCodeProps = {
@@ -19,7 +18,7 @@ export function RoomCode(props: RoomCodeProps) {
                 role="tooltip"
                 aria-label="Copiado!" >
 
-                <img src={copyImg} alt="Copy room code" />
+                <img src={require('../assets/images/copy.svg')} alt="Copy room code" />
             </a>
             <span>Sala {props.code}</span>
         </button>

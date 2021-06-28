@@ -7,11 +7,6 @@ declare namespace NodeJS {
     readonly PUBLIC_URL: string;
   }
 }
-
-const cors = require("cors");
-
-app.use(cors);
-
 declare module '*.avif' {
   const src: string;
   export default src;
