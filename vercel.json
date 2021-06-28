@@ -1,8 +1,19 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+        "src": "/",
+        "dest": "/index.js",
+        "methods": ["GET"]
+    },
+    {
+        "src": "/rooms/new",
+        "dest": "/index.js",
+        "methods": ["GET"]
+    },
+    {
+        "src": "/rooms/:id",
+        "dest": "/index.js",
+        "methods": ["GET"]
     }
-  ]
+]
 }
