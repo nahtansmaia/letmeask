@@ -10,7 +10,7 @@ type ModalProps = {
 
 const Modal = ({
     title = "",
-    children }: ModalProps) => {
+    children, }: ModalProps) => {
 
     return (
         <div className="modal">
@@ -20,8 +20,6 @@ const Modal = ({
                         <h2 className="title">{title}</h2>
                     </header>
                     <footer>
-                        <Button></Button>
-                        <Button></Button>
                         {children}
                     </footer>
                 </div>
