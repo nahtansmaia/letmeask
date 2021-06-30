@@ -1,31 +1,36 @@
-.modal {
+import styled from 'styled-components'
+
+export const Container = styled.div`
+    position: fixed;
+    width: 100vw;
     height: 100vh;
-    width: 100%;
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: center;
     align-items: center;
 
     .container {
-        background-color: #fff;
+        background-color: ${props => props.theme.colors.background};
         width: 40%;
         height: 30%;
-        color: #000;
+        color: var(--dark);
         border-radius: 8px;
 
         .content {
             padding: 25px;
 
-            .title {
-                font-size: 20px;
-                text-align: center;
-                color: #835afe;
+            header {
+                background: transparent;
+                
+                .title {
+                    font-size: 20px;
+                    text-align: center;
+                    color: var(--first);
+                }
             }
-
             footer {
                 display: flex;
                 justify-content: center;
@@ -38,4 +43,4 @@
             }
         }
     }
-}
+`;

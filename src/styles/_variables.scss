@@ -1,0 +1,57 @@
+  $dark: #29292e !important;
+  $light: #f8f8f8 !important;
+  $lighter: #e9e6e6 !important;
+  $error: #d6230b !important;
+
+  $first: #834afd !important;
+  $second: #e559f9 !important;
+
+  $featured-lighter: #814df0 !important;
+  $featured-darker: #737380 !important;
+
+  $transparent-dark: rgba(0, 0, 0, 0.7) !important;
+
+  :root {
+    --dark: #{$dark};
+    --light: #{$light};
+    --lighter: #{$lighter};
+    --error: #{$error};
+
+    --first: #{$first};
+    --second: #{$second};
+
+    --featured-lighter: #{$featured-lighter};
+    --featured-darker: #{$featured-darker};
+
+    --transparent-dark: #{transparent-dark};
+  }
+
+.dark-theme {
+  $dark: #29292e !important;
+  $light: #f8f8f8 !important;
+  $lighter: #e9e6e6 !important;
+  $error: #d6230b !important;
+
+  $first: #834afd !important;
+  $second: #e559f9 !important;
+
+  $featured-lighter: #814df0 !important;
+  $featured-darker: #737380 !important;
+
+  $transparent-dark: rgba(0, 0, 0, 0.7) !important;
+
+  :root {
+    --dark: #{$dark};
+    --light: #{$light};
+    --lighter: #{$lighter};
+    --error: #{$error};
+
+    --first: #{$first};
+    --second: #{$second};
+
+    --featured-lighter: #{$featured-lighter};
+    --featured-darker: #{$featured-darker};
+
+    --transparent-dark: #{transparent-dark};
+  }
+}
