@@ -74,6 +74,17 @@ export const Container = styled.div`
             }
         }
 
+        .no-questions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+
+            .text-no-questions {
+                margin-top: 20px;
+            }
+        }
         form {
             .form-footer {
                 display: flex;
