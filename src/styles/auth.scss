@@ -1,3 +1,5 @@
+@import "../styles/variables";
+
 #page-auth {
     display: flex;
     align-items: stretch;
@@ -6,7 +8,7 @@
 
 aside {
     flex: 7;
-    background: #835afd;
+    background: var(--first);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,14 +22,14 @@ aside {
         font: 700 36px "Poppins", sans-serif;
         line-height: 42px;
         margin-top: 16px;
-        color: #f8f8f8;
+        color: var(--light);
     }
 
     p {
         font-size: 24px;
         line-height: 32px;
         margin-top: 16px;
-        color: #f8f8f8;
+        color: var(--light);
     }
 }
 
@@ -37,6 +39,13 @@ aside {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .switch {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        align-content: space-between;        
+    }
 }
 
 .main-content {
@@ -62,8 +71,8 @@ aside {
             height: 50px;
             border-radius: 8px;
             padding: 0 16px;
-            background: #fff;
-            border: 1px solid #a8a8b3;
+            background: var(--light);
+            border: 1px solid var(--featured-darker);
         }
 
         button {
@@ -73,16 +82,6 @@ aside {
         button,
         input {
             width: 100%;
-        }
-    }
-
-    p {
-        font-size: 14px;
-        color: #737388;
-        margin-top: 16px;
-
-        a {
-            color: #e559f9;
         }
     }
 
@@ -115,7 +114,7 @@ aside {
     border-radius: 8px;
     font-weight: 500;
     background: #ea4335;
-    color: #fff;
+    color: var(--light);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,7 +133,7 @@ aside {
 
 .separator {
     font-size: 14px;
-    color: #a8a8b3;
+    color: var(--featured-darker);
     margin: 32px 0;
     display: flex;
     align-items: center;
@@ -143,14 +142,14 @@ aside {
         content: "";
         flex: 1;
         height: 1px;
-        background-color: #a8a8b3;
+        background-color: var(--featured-darker);
         margin-right: 16px;
     }
     &::after {
         content: "";
         flex: 1;
         height: 1px;
-        background-color: #a8a8b3;
+        background-color: var(--featured-darker);
         margin-left: 16px;
     }
 }

@@ -1,28 +1,47 @@
-#page-room {
-    padding-bottom: 32px;
-    
-    header {
-        padding: 24px;
-        border-bottom: 1px solid #e2e2e2;
+import styled from 'styled-components'
 
+export const Container = styled.div`
+{
+    padding-bottom: 32px;
+
+    header {
+        background: ${props => props.theme.colors.background};
+        filter: brightness(0.91); 
+        padding: 24px;
+        border-bottom: 1px solid var(--lighter);
+        
         .content {
             max-width: 1120px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            > img {
-                max-height: 45px;
-                cursor: pointer;
-            }
-
-            > div {
+            align-items: stretch;
+            
+            .logo {
+                flex: 2;
                 display: flex;
-                gap: 16px;
-                
+                flex-direction: column;
+                justify-content: center;
+                > img {
+                    max-height: 45px;
+                    cursor: pointer;
+                }
+            }
+            .body {
+                flex: 8;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 15px;
+
                 button {
-                    height: 40px;
+                    margin-top: 0px;
+                    height: 35px;
+                    background: ${props => props.theme.colors.background}
+                }
+
+                .switch {
+                    position: absolute;
+                    top: 50px;
+                    right: 15px;
                 }
             }
         }
@@ -38,41 +57,34 @@
             margin: 32px 0 24px;
             display: flex;
             align-items: center;
-
+            
             h1 {
                 font-family: "Poppins", sans-serif;
                 font-size: 24px;
-                color: #29292e;
-            }
-
+                color: ${props => props.theme.colors.text};
+            }            
             span {
                 margin-left: 16px;
-                background: #e559f9;
+                background: var(--second);
                 border-radius: 9999px;
                 padding: 8px 16px;
-                color: #fff;
+                color: var(--light);
                 font-weight: 500;
                 font-size: 14px;
             }
         }
 
         form {
-            textarea {
-                width: 100%;
-                border: 0;
-                padding: 16px;
-                border-radius: 8px;
-                background: #fefefe;
-                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-                resize: vertical;
-                min-height: 130px;
-            }
-
             .form-footer {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-top: 16px;
+                margin-top: 10px;
+
+                button {
+                    margin-top: 0px;
+                    height: 35px;
+                }
 
                 .user-info {
                     display: flex;
@@ -86,21 +98,21 @@
 
                     span {
                         margin-left: 8px;
-                        color: #29292e;
+                        color: ${props => props.theme.colors.text};
                         font-weight: 500;
-                        font-size: 14px;
+                        font-size: 16px;
                     }
                 }
 
                 > span {
                     font-size: 14px;
-                    color: #737380;
+                    color: ${props => props.theme.colors.background};
                     font-weight: 500;
 
                     button {
                         background: transparent;
                         border: 0;
-                        color: #834afd;
+                        color: var(--first);
                         text-decoration: underline;
                         font-size: 14px;
                         font-weight: 500;
@@ -115,3 +127,4 @@
         }
     }
 }
+`;

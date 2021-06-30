@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import './styles.scss';
+import { Container } from "./styles";
 
 type ModalProps = {
     children?: ReactNode;
@@ -12,7 +12,7 @@ const Modal = ({
     children, }: ModalProps) => {
 
     return (
-        <div className="modal">
+        <Container className="modal">
             <div className="container">
                 <div className="content">
                     <header>
@@ -23,7 +23,7 @@ const Modal = ({
                     </footer>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 
