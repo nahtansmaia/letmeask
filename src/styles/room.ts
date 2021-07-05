@@ -117,7 +117,7 @@ export const Container = styled.div`
 
                 > span {
                     font-size: 14px;
-                    color: ${props => props.theme.colors.background};
+                    color: ${props => props.theme.colors.text};
                     font-weight: 500;
 
                     button {
@@ -132,6 +132,27 @@ export const Container = styled.div`
                     }
                 }
             }
+
+            .buttonInside {
+                position:relative;
+                margin-bottom:10px;
+
+                > button {
+                    position:absolute;
+                    right: 10px;
+                    bottom: 10px;
+                    border: none;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 100%;
+                    background: transparent;
+                    text-align: center;
+                    padding: 2px;
+                  }
+                > button:hover {
+                    cursor: pointer;
+                }
+              }
         }
         .question-list {
             margin-top: 32px;

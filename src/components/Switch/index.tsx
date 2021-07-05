@@ -12,6 +12,7 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
   const { colors, title } = useContext(ThemeContext);
 
   return (
+    <div>
       <Switch
         onChange={toggleTheme}
         checked={title === 'dark'}
@@ -20,9 +21,12 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
         height={20}
         width={50}
         handleDiameter={25}
-        offColor={shade(0.15, colors.primary)}
-        onColor={colors.secundary}
+        onHandleColor={shade(0.05, colors.primary)}
+        offHandleColor={shade(0.35, colors.secundary)}
+        offColor={colors.primary}
+        onColor={shade(0.35, colors.secundary)}
       />
+    </div>
   );
 };
 

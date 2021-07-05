@@ -50,8 +50,7 @@ export function useRoom(roomId: String) {
                     likeCount: Object.values(value.likes ?? {}).length,
                     likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
                 }
-            }).sort((x, y) => ((x.isHighlighted === y.isHighlighted) ? 0 : x ? -1 : 1) || 
-            y.likeCount - x.likeCount);
+            });
             setTitle(databaseRoom.title);
             setQuestions(parsedQuestions);
         });

@@ -7,7 +7,6 @@ export const Container = styled.button`
 
   background: ${props => props.theme.colors.background};
   border: 1px solid var(--first);
-  cursor: pointer;
   display: flex;
 
   span {
@@ -31,7 +30,8 @@ export const Container = styled.button`
           padding: 0 12px;
           display: flex;
           justify-content: center;
-          align-content: center;
+          align-content: center;    
+          cursor: pointer;
       }
 
       &:active::after {

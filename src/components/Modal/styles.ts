@@ -15,13 +15,23 @@ export const Container = styled.div`
     .container {
         background-color: ${props => props.theme.colors.background};
         width: 40%;
-        height: 30%;
-        color: var(--dark);
+        height: 35%;
         border-radius: 8px;
 
-        .content {
-            padding: 25px;
+        .icon {
+            display: flex;
+            justify-content: center;
+            padding-top: 15px;
 
+            svg path {
+                stroke: ${props => props.theme.colors.primary};
+            }
+            svg circle {
+                stroke: ${props => props.theme.colors.primary};
+            }
+        }
+
+        .content {
             header {
                 background: transparent;
                 
@@ -35,7 +45,7 @@ export const Container = styled.div`
                 display: flex;
                 justify-content: center;
                 gap: 15px;
-                height: 25px;
+                height: 5px;
 
                 button {
                     height: 35px;

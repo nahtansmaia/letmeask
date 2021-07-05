@@ -60,7 +60,7 @@ export default createGlobalStyle`
     }
     
     &.outlined {
-        background: var(--light);
+        background: transparent;
         border: 1px solid var(--first);
         color: var(--first);
     }

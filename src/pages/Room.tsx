@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
@@ -9,6 +9,7 @@ import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 import { useToastWarning, useToastError } from '../hooks/useToast';
 
+import phoneIcon from '../assets/images/phone.png'
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePeristedState from '../hooks/usePersistedState'
 import Switch from '../components/Switch/index';
@@ -36,6 +37,9 @@ export function Room() {
   const { title, questions } = useRoom(roomId);
   let warningToast = useToastWarning;
   let errorToast = useToastError;
+  const recognitionStart = createRecognition();
+  let listener = false;
+
 
   function redirectUserToHome() {
     history.push('/');
@@ -77,6 +81,46 @@ export function Room() {
     }
   };
 
+  function createRecognition() {
+    let win: any = window as any;
+    const SpeechRecognition = window.SpeechRecognition || win.webkitSpeechRecognition;
+    const recognition = SpeechRecognition !== undefined ? new SpeechRecognition() : null;
+    const text = document.getElementById("textarea");
+
+    if (!recognition) {
+      errorToast("Navegador ou permissão não suportada.");
+      return null;
+    }
+
+    recognition.lang = "pt_BR";
+    recognition.continuous = true;
+    recognition.onstart = () => {
+      console.log("start");
+    };
+
+    recognition.onend = () => {
+      console.log("end");
+    };
+    recognition.onerror = (e) => {
+      errorToast("Houve um erro ao iniciar o Speech.");
+      console.error(e);
+    };
+    recognition.onresult = e => {
+      if (text) {
+        text.innerHTML = e.results[0][0].transcript;
+      }
+    }
+    return recognition;
+  }
+
+  function listenerRecognition() {
+    if (!recognitionStart) return;
+
+    const text = document.getElementById("textarea")!;
+    text.innerHTML = "";
+    listener ? recognitionStart.stop() : recognitionStart.start();
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -99,9 +143,15 @@ export function Room() {
             {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
           </div>
           <form onSubmit={handleSendQuestion}>
-            <textarea className="textarea" placeholder="O que você quer perguntar?"
-              onChange={event => setNewQuestion(event.target.value)}
-              value={newQuestion} />
+            <div className="buttonInside">
+              <textarea id="textarea" className="textarea" placeholder="O que você quer perguntar?"
+                onChange={event => setNewQuestion(event.target.value)}
+                value={newQuestion} >
+              </textarea>
+              <button type="button" onClick={listenerRecognition}>
+                <img src={phoneIcon} alt="phoneIcon" height="20" width="20" />
+              </button>
+            </div>
             <div className="form-footer">
               {user ? (
                 <div className="user-info">
@@ -110,9 +160,9 @@ export function Room() {
                 </div>
               ) : (
                 <span>Para enviar uma pergunta,
-                  <button>
+                  <Link to="/">
                     faça seu login.
-                  </button>
+                  </Link>
                 </span>
               )}
               <Button className="button buttonPrincipal" type="submit" disabled={!user}>Enviar pergunta</Button>
@@ -148,6 +198,5 @@ export function Room() {
         </main>
       </Container>
     </ThemeProvider>
-
   );
 }
