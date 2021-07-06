@@ -23,7 +23,7 @@ type RoomParams = {
 };
 
 export function Room() {
-  const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', light);
+  const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', dark);
 
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
@@ -41,8 +41,8 @@ export function Room() {
   let listener = false;
 
 
-  function redirectUserToHome() {
-    history.push('/');
+  function redirectUserToAuth() {
+    history.push('/auth');
   }
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -128,7 +128,7 @@ export function Room() {
         <header>
           <div className="content">
             <div className="logo">
-              <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToHome} />
+              <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToAuth} />
             </div>
             <div className="body">
               <RoomCode code={roomId} />

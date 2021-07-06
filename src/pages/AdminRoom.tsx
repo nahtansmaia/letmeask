@@ -25,7 +25,7 @@ type RoomParams = {
 };
 
 export function AdminRoom() {
-  const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', light);
+  const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', dark);
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   };
@@ -38,8 +38,8 @@ export function AdminRoom() {
   const { title, questions } = useRoom(roomId);
   let successToast = useToastSuccess;
 
-  function redirectUserToHome() {
-    history.push('/');
+  function redirectUserToAuth() {
+    history.push('/auth');
   }
 
   async function handleDeleteQuestion(questionId: string) {
@@ -75,7 +75,7 @@ export function AdminRoom() {
         <header>
           <div className="content">
             <div className="logo">
-              <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToHome} />
+              <img src={logoImg} alt="LetMeAsk" onClick={redirectUserToAuth} />
             </div>
             <div className="body">
               <RoomCode code={roomId} />
