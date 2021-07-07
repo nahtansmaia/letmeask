@@ -30,7 +30,7 @@ export function Question({
                 { answered: isAnswered },
                 { highlighted: isHighlighted && !isAnswered }
             )}>
-            <p>{content}</p>
+            <p dangerouslySetInnerHTML={{__html: content}}></p>
             <footer>
                 <div className="user-info">
                     <img src={author.avatar} alt={author.name} />

@@ -18,19 +18,26 @@ export default createGlobalStyle`
     font: 400 16px 'Roboto', sans-serif;
   }
 
-  textarea {
+  #textarea {
     width: 100%;
     border: 0;
-    padding: 16px;
     border-radius: 8px;
     background: ${props => props.theme.colors.backgroundTextarea};
     color: ${props => props.theme.colors.text};
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     resize: vertical;
     min-height: 130px;
+
+    .w-md-editor-toolbar {
+      background-color: ${props => props.theme.colors.backgroundTextarea};
+
+      button {
+        color: #000;
+      }
+    }
   }
 
-  textarea::placeholder {
+  #textarea::placeholder {
       color: ${props => props.theme.colors.text};
       filter: brightness(85%);
   }

@@ -8,6 +8,8 @@ import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 import { useToastWarning, useToastError } from '../hooks/useToast';
+import MDEditor from '@uiw/react-md-editor';
+import snarkdown from 'snarkdown';
 
 import phoneIcon from '../assets/images/phone.png'
 import { ThemeProvider, DefaultTheme } from 'styled-components';
@@ -33,7 +35,7 @@ export function Room() {
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
-  const [newQuestion, setNewQuestion] = useState('')
+  const [newQuestion, setNewQuestion] = useState<string>();
   const { title, questions } = useRoom(roomId);
   let warningToast = useToastWarning;
   let errorToast = useToastError;
@@ -44,10 +46,10 @@ export function Room() {
   function redirectUserToAuth() {
     history.push('/auth');
   }
-  
+
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
-    if (newQuestion.trim() === '') {
+    if (newQuestion?.trim() === '') {
       warningToast('Digite sua pergunta')
       return;
     }
@@ -60,7 +62,7 @@ export function Room() {
     let d2 = new Date();
 
     const question = {
-      content: newQuestion,
+      content: snarkdown(newQuestion || ''),
       dateSend: new Date(d2.valueOf() - d2.getTimezoneOffset() * 60000)
         .toISOString()
         .slice(0, 16)
@@ -152,10 +154,15 @@ export function Room() {
           </div>
           <form onSubmit={handleSendQuestion}>
             <div className="buttonInside">
-              <textarea id="textarea" className="textarea" placeholder="O que você quer perguntar?"
-                onChange={event => setNewQuestion(event.target.value)}
-                value={newQuestion} >
-              </textarea>
+              <MDEditor 
+                value={newQuestion}
+                onChange={setNewQuestion}
+                autoFocus={true}
+                id="textarea" className="textarea"
+                textareaProps={{
+                  placeholder: 'O que você quer perguntar?',
+                }}
+              />
               <button type="button" onClick={listenerRecognition}>
                 <img src={phoneIcon} alt="phoneIcon" height="20" width="20" />
               </button>
