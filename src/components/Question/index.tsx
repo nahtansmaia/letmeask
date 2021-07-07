@@ -5,6 +5,7 @@ import { Container } from './styles';
 
 type QuestionProps = {
     content: string;
+    dateSend: Date;
     author: {
         name: string;
         avatar: string;
@@ -16,6 +17,7 @@ type QuestionProps = {
 
 export function Question({
     content,
+    dateSend,
     author,
     isAnswered = false,
     isHighlighted = false,
@@ -32,7 +34,7 @@ export function Question({
             <footer>
                 <div className="user-info">
                     <img src={author.avatar} alt={author.name} />
-                    <span>{author.name}</span>
+                    <span>{author.name} <text style={{ fontSize: 10, marginLeft: "5px" }}>{dateSend}</text></span>
                 </div>
                 <div>
                     {children}

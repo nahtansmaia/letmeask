@@ -122,6 +122,7 @@ export function AdminRoom() {
                   <Question
                     key={question.id}
                     content={question.content}
+                    dateSend={question.dateSend}
                     author={question.author}
                     isAnswered={question.isAnswered}
                     isHighlighted={question.isHighlighted}

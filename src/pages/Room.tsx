@@ -44,6 +44,7 @@ export function Room() {
   function redirectUserToAuth() {
     history.push('/auth');
   }
+  
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
     if (newQuestion.trim() === '') {
@@ -56,8 +57,15 @@ export function Room() {
       throw new Error('You must be logged in');
     }
 
+    let d2 = new Date();
+
     const question = {
       content: newQuestion,
+      dateSend: new Date(d2.valueOf() - d2.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 16)
+        .replace('T', ' ')
+        .replace('Z', ''),
       author: {
         name: user.name,
         avatar: user.avatar,
@@ -174,6 +182,7 @@ export function Room() {
                 <Question
                   key={question.id}
                   content={question.content}
+                  dateSend={question.dateSend}
                   author={question.author}
                   isAnswered={question.isAnswered}
                   isHighlighted={question.isHighlighted}
