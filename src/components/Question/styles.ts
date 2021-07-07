@@ -65,11 +65,11 @@ export const Container = styled.div`
             filter: brightness(0.7);
             
             svg path {
-                stroke: ${props => props.theme.colors.primary};
+                stroke: ${props => props.theme.colors.text};
                 filter: brightness(0.7);
             }
             svg circle {
-                stroke: ${props => props.theme.colors.primary};
+                stroke: ${props => props.theme.colors.text};
                 filter: brightness(0.7);
             }
 
@@ -87,7 +87,7 @@ export const Container = styled.div`
             }
 
             &:hover {
-                filter: brightness(0.4);
+                filter: brightness(0.2);
             }
         }
     }
