@@ -83,6 +83,15 @@ export const Container = styled.div`
 
             .text-no-questions {
                 margin-top: 20px;
+
+                p {
+                    text-align: center;
+                    a {
+                        color: ${props => props.theme.colors.text};
+                        text-decoration: none;
+                        font-weight:bold;
+                    }
+                }
             }
         }
         form {

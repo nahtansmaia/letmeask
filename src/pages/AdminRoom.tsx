@@ -1,4 +1,4 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
@@ -39,6 +39,7 @@ export function AdminRoom() {
   let successToast = useToastSuccess;
 
   function redirectUserToAuth() {
+    console.log(roomId);
     history.push('/auth');
   }
 
@@ -111,6 +112,7 @@ export function AdminRoom() {
               </div>
               <div className="text-no-questions">
                 <h2>Não há nenhuma pergunta nesta sala.</h2>
+                <p>Deseja realizar uma pergunta? <Link to={`/rooms/${roomId}`}>Clique aqui.</Link></p>
               </div>
             </div>
           ) : (
