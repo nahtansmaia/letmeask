@@ -131,7 +131,7 @@ export function AdminRoom() {
                       <>
                         <button
                           type="button"
-                          className="action-button"
+                          className={`action-button ${question.isHighlighted ? 'liked' : ''}`}
                           onClick={() => handleCheckQuestionAsAnswered(question.id)}
                         >
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +153,7 @@ export function AdminRoom() {
                       </>
                     )}
                     <button
-                      className="action-button"
+                      className={`action-button ${question.isHighlighted ? 'liked' : ''}`}
                       type="button"
                       onClick={() => setModalDeleteQuestionVisible({...isModalDeleteQuestionVisible, visible: true, idQuestion: question.id})}
                     >

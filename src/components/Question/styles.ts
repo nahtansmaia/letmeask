@@ -77,12 +77,16 @@ export const Container = styled.div`
                 display: flex;
                 align-items: flex-end;
                 gap: 8px;
-                &.liked {
-                    filter: brightness(0.7);
-                    color: ${props => props.theme.colors.primary};
-                    svg path {
-                        stroke: ${props => props.theme.colors.primary};
-                    }
+            }
+            
+            &.liked {
+                filter: brightness(0.7);
+                color: ${props => props.theme.colors.primary};
+                svg path {
+                    stroke: ${props => props.theme.colors.primary};
+                }
+                svg circle {
+                    stroke: ${props => props.theme.colors.primary};
                 }
             }
 
