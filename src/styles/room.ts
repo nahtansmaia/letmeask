@@ -20,8 +20,9 @@ export const Container = styled.div`
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                > img {
-                    max-height: 45px;
+                
+                svg {
+                    width: 7.8rem;
                     cursor: pointer;
                 }
             }

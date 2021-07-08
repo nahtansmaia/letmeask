@@ -1,15 +1,25 @@
 import styled from 'styled-components'
-import { ProgressPlugin } from 'webpack'
 
 export const Container = styled.div`
+&:before {
+    content: '';
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: url('/illustration.svg') no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.6rem 1.6rem;
 
-    img {
+    svg {
         width: 7.8rem;
+        z-index: -1;
     }
 
     button {

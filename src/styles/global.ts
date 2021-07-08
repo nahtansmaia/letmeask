@@ -17,6 +17,13 @@ export default createGlobalStyle`
   body, input, button, textarea, span {
     font: 400 16px 'Roboto', sans-serif;
   }
+  
+  svg {
+    align-items: center;
+    path.title {
+        fill: ${props => props.theme.colors.text};
+    }
+}
 
   #textarea {
     width: 100%;
