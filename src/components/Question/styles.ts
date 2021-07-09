@@ -95,4 +95,53 @@ export const Container = styled.div`
             }
         }
     }
+    .answer {
+        position: relative;
+        min-height: 50px;
+        resize: both;
+        margin-top: 10px;
+
+        > textarea {
+            background: ${props => props.theme.colors.backgroundTextarea};
+            filter: brightness(0.9);
+            border-color:  ${props => props.theme.colors.primary};
+            color: ${props => props.theme.colors.text};
+            font-size: 12px;
+            outline: none;
+            width: 100%; 
+            min-height: 50px; 
+            resize: none;
+            border-radius: 12px;
+            padding: 5px;
+            padding-right: 35px;
+        }
+
+        > textarea::placeholder {
+            color: ${props => props.theme.colors.text};
+            filter: brightness(0.8);
+            font-size: 12px;
+        }
+
+        > button {
+            position:absolute;
+            border: none;
+            height: 50px;
+            width: 50px;
+            background: transparent;
+            text-align: center;
+            padding: 2px;
+            top: -25px;
+            right: 5px;
+
+            svg {
+                path.send-svg {
+                    fill: ${props => props.theme.colors.primary};
+                }
+            }
+        }
+
+        > button:hover {
+            cursor: pointer;
+        }
+    }
 `

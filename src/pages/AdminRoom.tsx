@@ -34,8 +34,10 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const [isModalDeleteQuestionVisible, setModalDeleteQuestionVisible] = useState({ visible: false, idQuestion: '' });
   const [isModalEndRoomVisible, setModalEndRoomVisible] = useState(false);
+  const [newAnswer, setNewAnswer] = useState<string>();
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
+  const questionId = params;
   let successToast = useToastSuccess;
 
   function redirectUserToAuth() {
@@ -67,6 +69,14 @@ export function AdminRoom() {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
       isHighlighted: true,
     });
+  }
+
+  async function handleSendAnswer() {
+    await database.ref(`rooms/${roomId}/questions/${questions}/answer`).push(newAnswer);
+
+    setNewAnswer('');
+
+    console.log("Enviou caralho!", questionId);
   }
 
   return (
@@ -154,6 +164,8 @@ export function AdminRoom() {
                     author={question.author}
                     isAnswered={question.isAnswered}
                     isHighlighted={question.isHighlighted}
+                    handleSendAnswer={handleSendAnswer}
+                    answer={newAnswer}
                   >
                     {!question.isAnswered && (
                       <>
